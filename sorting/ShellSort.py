@@ -10,3 +10,4 @@ def shell_sort(arr):
                 j -= gap
             arr[j] = temp
         gap //= 2
+    return arr
