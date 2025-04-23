@@ -53,20 +53,22 @@ Each sorting algorithm has its own implementation file (e.g., `BubbleSort.py`) c
 
 ## Running the Tests
 
-The tests for all sorting algorithms are located in the `TestSorting.py` file. To run the tests, ensure you are in the project's root directory in your terminal.
+The tests for all sorting algorithms are located in the `TestSorting.py` file. To run the tests, ensure you are in the project's `sorting` directory in your terminal.
 
 To run all tests, use the following command:
 ```
 bash
-python3 sorting/TestSorting.py
+python3 TestSorting.py
 ```
 This will execute all the tests defined in the `TestSorting.py` file.
 
 **Running Individual Tests:**
 
 You can run tests for a specific algorithm by appending the lowercase name of the algorithm to the command. For example, to run the test for Bubble Sort, you can run:
-```
-bash
-python3 sorting/TestSorting.py bubble
+```bash
+python3 TestSorting.py bubble
 ```
 Similarly, to run the test for Quick Sort, you can run:
+```bash
+python3 TestSorting.py quick
+```
