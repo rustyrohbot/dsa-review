@@ -27,9 +27,21 @@ def productExceptSelf(nums: List[int]) -> List[int]:
     Returns an array where each element at index i is the product of all numbers in nums
     except nums[i], without using division and in O(n) time.
     """
-    # TODO: Implement the solution here
-    pass
+    output = [1] * (len(nums))
 
+    # prefixes
+    prefix = 1
+    for i in range(len(nums)):
+        output[i] = prefix
+        prefix *= nums[i]
+
+    # postfixes
+    postfix = 1
+    for i in range(len(nums)-1, -1, -1):
+        output[i] *= postfix
+        postfix *= nums[i]
+
+    return output
 
 class TestProductExceptSelf(unittest.TestCase):
     def setUp(self):
