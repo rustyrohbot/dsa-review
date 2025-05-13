@@ -24,8 +24,13 @@ def twoSum(nums: List[int], target: int) -> List[int]:
     Finds two numbers in the list that add up to the target.
     Returns their indices.
     """
-    # TODO: Implement the solution here
-    pass
+    indexes = {}
+
+    for i, n in enumerate(nums):
+        diff = target - n
+        if diff in indexes:
+            return [indexes[diff], i]
+        indexes[n] = i
 
 
 class TestTwoSum(unittest.TestCase):
