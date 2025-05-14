@@ -27,8 +27,20 @@ def isValid(s: str) -> bool:
     Returns:
         bool: True if valid, False otherwise.
     """
-    # TODO: Implement the solution here
-    pass
+
+    matching = { '}': '{', ']': '[', ')': '('}
+    stack = []
+
+    for c in s:
+        if c in matching:
+            if stack and stack[-1] == matching[c]:
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(c)
+
+    return len(stack) == 0
 
 
 class TestValidParentheses(unittest.TestCase):
