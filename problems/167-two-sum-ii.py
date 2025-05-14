@@ -20,13 +20,20 @@ import unittest
 from typing import List
 
 
-def twoSumSorted(numbers: List[int], target: int) -> List[int]:
+def twoSumSorted(nums: List[int], target: int) -> List[int]:
     """
     Finds two numbers in the sorted list that add up to target and returns their 1-based indices.
     """
-    # TODO: Implement the solution here
-    pass
+    left, right = 0, len(nums) -1
 
+    while left < right:
+        sum = nums[left] + nums[right]
+        if sum == target:
+            return [left+1, right+1]
+        elif sum > target:
+            right -= 1
+        else:
+            left += 1
 
 class TestTwoSumSorted(unittest.TestCase):
     def setUp(self):
