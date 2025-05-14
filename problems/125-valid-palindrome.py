@@ -17,14 +17,27 @@
 # Explanation: "raceacar" is not a palindrome.
 
 import unittest
-
+import string
 
 def is_palindrome(s: str) -> bool:
     """
     Returns True if s is a palindrome ignoring non-alphanumeric chars and case, else False.
     """
-    # TODO: Clean string and use two-pointer check
-    pass
+    punctuation = [' ', '.', ',', ':', '!', '?']
+    left, right = 0, len(s) -1
+    while left < right:
+        if s[left] in punctuation:
+            left += 1
+            continue
+        if s[right] in punctuation:
+            right -= 1
+            continue
+
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+    return True
 
 class TestValidPalindrome(unittest.TestCase):
     def setUp(self):
