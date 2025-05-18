@@ -24,20 +24,20 @@ def is_palindrome(s: str) -> bool:
     Returns True if s is a palindrome ignoring non-alphanumeric chars and case, else False.
     """
     punctuation = [' ', '.', ',', ':', '!', '?']
-    left, right = 0, len(s) -1
+    left, right = 0, len(s) -1 # initialize two points
     while left < right:
-        if s[left] in punctuation:
+        if s[left] in punctuation: # increment left pointer if the character is a punctation or a space
             left += 1
             continue
-        if s[right] in punctuation:
+        if s[right] in punctuation: # decrement right pointer if the chater is punctuation or a space
             right -= 1
             continue
 
-        if s[left].lower() != s[right].lower():
+        if s[left].lower() != s[right].lower(): # returns false if the right and left values don't match
             return False
         left += 1
         right -= 1
-    return True
+    return True # while loop exists without returning false so return true
 
 class TestValidPalindrome(unittest.TestCase):
     def setUp(self):
