@@ -28,19 +28,19 @@ def isValid(s: str) -> bool:
         bool: True if valid, False otherwise.
     """
 
-    matching = { '}': '{', ']': '[', ')': '('}
-    stack = []
+    matching = { '}': '{', ']': '[', ')': '('} # mapping closing brace to opening
+    stack = [] # stack to track open parentheses
 
     for c in s:
-        if c in matching:
-            if stack and stack[-1] == matching[c]:
+        if c in matching: # if the character is a closing brace
+            if stack and stack[-1] == matching[c]: # check if the stack not empty and that the last added item is the matching open brace
                 stack.pop()
             else:
-                return False
+                return False # returns false if it's not
         else:
-            stack.append(c)
+            stack.append(c) # c is an open brace so append it
 
-    return len(stack) == 0
+    return len(stack) == 0 # returns true if the stack is empty
 
 
 class TestValidParentheses(unittest.TestCase):
