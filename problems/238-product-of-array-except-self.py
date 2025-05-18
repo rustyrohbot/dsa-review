@@ -27,19 +27,19 @@ def productExceptSelf(nums: List[int]) -> List[int]:
     Returns an array where each element at index i is the product of all numbers in nums
     except nums[i], without using division and in O(n) time.
     """
-    output = [1] * (len(nums))
+    output = [1] * (len(nums)) # initialize output array to all 1 of length nums
 
     # prefixes
-    prefix = 1
+    prefix = 1 # starting prefix is 1
     for i in range(len(nums)):
-        output[i] = prefix
-        prefix *= nums[i]
+        output[i] = prefix # update output sub i to the prefix
+        prefix *= nums[i] # update the prefix to be itself multiplied by nums sub i
 
     # postfixes
-    postfix = 1
-    for i in range(len(nums)-1, -1, -1):
-        output[i] *= postfix
-        postfix *= nums[i]
+    postfix = 1 # starting postfix is 1
+    for i in range(len(nums)-1, -1, -1): # reverse iterate, start at the last index of nums, stop at 0, and decrement each loop by 1
+        output[i] *= postfix # set the output sub i equal to itself multiplied by the postfix
+        postfix *= nums[i] # update the postfix to be itself multiplied by nums sub i
 
     return output
 
