@@ -22,8 +22,21 @@ def maxArea(height: List[int]) -> int:
     """
     Returns the maximum water that can be contained between two lines in the `height` list.
     """
-    # TODO: Implement the two-pointer solution here
-    pass
+    left, right = 0, len(height) -1 # initialize pointers
+    amount = 0
+
+    while left < right:
+        width = right - left # distance between the two pointers
+        h = min(height[left], height[right]) # height is the min of height sub left and height sub left, if it was max, the water would spill out
+        area = width * h
+        amount = max(amount, area)
+
+        if height[left] > height[right]:
+            right -= 1 # decrement the right pointer is the left height is greater
+        else:
+            left += 1 # increment the left pointer if the right height is greater or equal
+
+    return amount
 
 
 class TestContainerWithMostWater(unittest.TestCase):
