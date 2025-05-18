@@ -26,15 +26,16 @@ def isSameTree(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
     """
     Compares two binary trees and returns True if they are structurally identical and node values are equal.
     """
-    if not p and not q:
+    # modified DFS
+    if not p and not q: # base case, both p and q have no value
         return True
-    if not p and q:
+    if not p and q: # if only p is None, return false
         return False
-    if p and not q:
+    if p and not q: # if only q is None, return false
         return False
-    if p.val == q.val:
+    if p.val == q.val: # if p and q have matching values, recursively call on left and right nodes
         return isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
-    else:
+    else: # p and q have different values, so return false
         return False
 
 class TestSameTree(unittest.TestCase):
