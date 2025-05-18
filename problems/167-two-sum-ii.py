@@ -24,15 +24,15 @@ def twoSumSorted(nums: List[int], target: int) -> List[int]:
     """
     Finds two numbers in the sorted list that add up to target and returns their 1-based indices.
     """
-    left, right = 0, len(nums) -1
+    left, right = 0, len(nums) -1 # initialize two pointers
 
     while left < right:
         sum = nums[left] + nums[right]
-        if sum == target:
+        if sum == target: # if left plus right is the target, return the pair
             return [left+1, right+1]
-        elif sum > target:
+        elif sum > target: # the list is sorted, so decrement right if the sum is larger than the target
             right -= 1
-        else:
+        else: # sum is less than target so increment left
             left += 1
 
 class TestTwoSumSorted(unittest.TestCase):
