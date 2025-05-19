@@ -58,8 +58,15 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
     """
     Returns True if the binary tree is a valid BST, False otherwise.
     """
-    # TODO: Implement DFS with bounds checking here
-    pass
+    def isValid(node, left, right):
+        if not node:
+            return True
+        if not (node.val > left and node.val < right): # if the node value is not greater than the left boundary and less than the right value, then return False
+            return False
+
+        return (isValid(node.left, left, node.val) and isValid(node.right, node.val, right)) # only return true if both the left subtree is valid and the right subtree is valid
+
+    return isValid(root, float('-inf'), float('inf'))
 
 class TestValidateBST(unittest.TestCase):
     def setUp(self):
