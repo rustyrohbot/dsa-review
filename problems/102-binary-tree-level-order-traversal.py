@@ -53,8 +53,24 @@ def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
     """
     Returns the level order traversal of a binary tree's nodes as a list of levels.
     """
-    # TODO: Implement the solution here
-    pass
+    # modified BFS
+    result = []
+    queue = []
+    queue.append(root) # initialize the queue by adding the root
+
+    while queue: # while the queue is not empty
+        length = len(queue) # number of items at the current level of the tree
+        level = []
+        for i in range(length): # only iterate through the number of elements at the current level
+            node = queue.pop(0)
+            if node:
+                level.append(node.val) # add node value to current level
+                queue.append(node.left) # add the node's left child to the queue
+                queue.append(node.right) # add the node's right child to the queue
+        if level:
+            result.append(level) # append the level's elements if the list is not empty
+
+    return result
 
 
 class TestBinaryTreeLevelOrderTraversal(unittest.TestCase):
