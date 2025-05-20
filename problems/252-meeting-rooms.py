@@ -17,8 +17,18 @@ def canAttendMeetings(intervals: List[List[int]]) -> bool:
     Determines if a person can attend all meetings without overlap.
     Returns True if no intervals overlap, otherwise False.
     """
-    # TODO: Implement by sorting intervals and checking for overlaps
-    pass
+    intervals.sort(key=lambda x: x[0]) # sort intervals by the start time
+
+    for i in range(1, len(intervals)): # start iteration at 1 because we want to our first loop to compare index 0 to index 1
+        interval1 = intervals[i-1]
+        interval2 = intervals[i]
+
+        if interval1[1] > interval2[0]: # return false if interval1's end time is greater than interval2's start time
+            return False
+
+    return True
+
+
 
 class TestCanAttendMeetings(unittest.TestCase):
     def setUp(self):
