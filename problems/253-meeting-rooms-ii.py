@@ -17,8 +17,22 @@ def minMeetingRooms(intervals: List[List[int]]) -> int:
     Returns the minimum number of conference rooms required so that all meetings
     can take place without overlaps.
     """
-    # TODO: Implement using a min-heap or two-pointer technique
-    pass
+    # we only care about when a meeting ends and begins, not which specific meeting starts or ends
+    startTimes = sorted(i[0] for i in intervals) # array for all the start times
+    endTimes = sorted(i[1] for i in intervals) # array for the all end times
+
+    result, count, start, end = 0, 0, 0, 0 # initialize everything to 0, the result, the current number of rooms, the pointer for the start times array, and the pointer for the end times array
+
+    while start < len(intervals):
+        if startTimes[start] < endTimes[end]: # meeting starts before a meeting ends
+            start += 1 # increment start pointer
+            count += 1 # increment count of number of rooms
+        else: # meeting ends before a meeting starts
+            end += 1 # increment end pointer
+            count -= 1 # decrement count of the number of rooms
+        result = max(result, count) # result is the higher of its current value and the current number of rooms
+
+    return result
 
 class TestMeetingRoomsII(unittest.TestCase):
     def setUp(self):
