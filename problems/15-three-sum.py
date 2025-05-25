@@ -22,8 +22,30 @@ def threeSum(nums: List[int]) -> List[List[int]]:
     Finds all unique triplets in the list which sum to zero.
     Returns a list of triplets.
     """
-    # TODO: Implement the solution here
-    pass
+    nums.sort() # list needs to be sorted in nlog(n) time for a 2 pointers solution to work
+
+    ret = []
+    for i in range(len(nums)-2):
+        if i > 0 and nums[i] == nums[i-1]: # continue loop if nums[i] is equal to its previosu value
+            continue
+
+        left, right = i+1, len(nums) -1 # initialize both right and left pointers at i+1 and the end of the list
+        while left < right:
+            total = nums[i] + nums[left] + nums[right]
+            if total < 0: # increment the left pointer if the total is less than zero
+                left += 1
+            elif total > 0: # decrement the right pointer if the total is greater than zero
+                right -= 1
+            else: # found a triplet that sums to zero
+                ret.append([nums[i], nums[left], nums[right]]) # triplet found, add it to the list
+                while left < right and nums[left] == nums[left + 1]: # increment the left pointer to skip duplicates
+                    left += 1
+                while left < right and nums[right] == nums[right -1]: # decrement the right pointer to skip duplicates
+                    right -= 1
+                left += 1 # increment left pointer for the next iteration
+                right -= 1 # decrement right pointer for the next iteration
+
+    return ret
 
 class TestThreeSum(unittest.TestCase):
     def setUp(self):
