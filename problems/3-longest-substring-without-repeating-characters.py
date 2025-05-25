@@ -23,8 +23,17 @@ def lengthOfLongestSubstring(s: str) -> int:
     """
     Returns the length of the longest substring without repeating characters.
     """
-    # TODO: Implement the solution here
-    pass
+    chars = set() # keeps track of characters in the substring
+    result = 0 # length of longest substring
+    start = 0 # start of substring
+
+    for end in range(len(s)): # use loop iterator to track end of the substring
+        while s[end] in chars: # duplicate found
+            chars.remove(s[start]) # remove characters from the front of the window
+            start += 1 # increment start of the window
+        chars.add(s[end]) # add current character to the set
+        result = max(result, end - start + 1) # result is the max of its current value or the difference between the end and begining index of the window plus one
+    return result
 
 
 class TestLongestSubstring(unittest.TestCase):
